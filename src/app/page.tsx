@@ -1,8 +1,10 @@
 import Link from 'next/link';
+import { PageViewLogger } from '@/components/analytics/PageViewLogger';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white overflow-hidden">
+      <PageViewLogger />
       {/* Hero Section */}
       <div className="relative isolate px-6 pt-14 lg:px-8">
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 text-center">
