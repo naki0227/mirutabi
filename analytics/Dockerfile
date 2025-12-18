@@ -1,5 +1,5 @@
 # Build Stage
-FROM golang:1.22-alpine AS builder
+FROM golang:1.24-alpine AS builder
 WORKDIR /app
 COPY go.mod go.sum ./
 # Since go.sum might not exist yet if 'go mod tidy' hasn't been run locally, we handle it gracefully
