@@ -47,7 +47,24 @@ npm run build
 | **Styling** | Tailwind CSS |
 | **Backend** | Supabase (Auth, Database, Storage) |
 | **Maps** | Mapbox / Google Maps API |
-| **Deploy** | Vercel |
+
+| **Analytics** | Go (Gin) + Firebase Firestore (on Cloud Run) |
+
+## 🎥 Video Feed (Note)
+
+- **Mock Implementation**: 動画フィード機能 (`/videos`, `/reels`) は現在モック実装です。
+- サンプル動画を使用してUI/UXのデモンストレーションを行っています。実際の投稿データではありません。
+
+## 📊 Analytics Server
+
+行動ログ（PVなど）を収集する専用サーバーをGo言語で実装しています。
+
+- **Endpoint**: `POST /log`
+- **Infrastructure**: Google Cloud Run
+- **Database**: Firebase Firestore (`event_logs`)
+- **Architecture**:
+  - `Next.js` (Client) -> `Go Server` (Analytics) -> `Firestore`
+
 
 ## 📁 Project Structure
 
