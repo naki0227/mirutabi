@@ -18,7 +18,7 @@ export default function Home() {
             </div>
           </div>
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 drop-shadow-lg">
-            TabiStyle
+            Mirutabi
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-300">
             「爆速コスパ」も「贅沢体験」も、AIがあなたに合わせて最適化。<br />
