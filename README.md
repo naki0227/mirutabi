@@ -1,11 +1,11 @@
-# Mirutabi (ミルタビ) - Visual Journey Archive 🌍
+# Mirutabi - Visual Journey Archive 🌍
 
 <p align="center">
   <img src="public/icon.png" width="120" alt="Mirutabi Logo" />
 </p>
 
 <p align="center">
-  <b>「この道を辿れば、同じ感動に出会える」</b><br>
+  <b>"Follow the path, find the moment."</b><br>
   Route Sharing & Trust-based Travel SNS built with Next.js 15
 </p>
 
@@ -17,47 +17,49 @@
 
 ---
 
-## 📖 概要 (Overview)
+[🇯🇵 Japanese (日本語)](README.ja.md)
 
-**Mirutabi** は、単なる写真共有ではなく、「移動の軌跡（ルート）」と「信頼（Trust）」を共有する次世代の旅行SNSです。
-きれいな写真だけでは伝わらない「そこへ行くまでの物語」や「実際の移動手段」をマップ上に可視化。**信頼スコアアルゴリズム**により、広告やインフルエンサーマーケティングに埋もれない、本当に価値ある旅情報をユーザーに届けます。
+## 📖 Overview
 
-## ✨ 主な機能 (Key Features)
+**Mirutabi** is a next-generation travel SNS that shares not just photos, but "Routes (Travel Trajectories)" and "Trust".
+It visualizes the "story of getting there" and "actual means of transportation" on a map, which cannot be conveyed by beautiful photos alone. With the **Trust Score Algorithm**, it delivers truly valuable travel information to users, buried in advertisements and influencer marketing.
 
-### 1. 🗺️ Visual Route Sharing (ルート共有)
-* **概要:** 旅の行程をマップ上に線と点で描き出し、他のユーザーが「追体験」可能な形式で保存。
-* **技術:** `Mapbox GL JS` を採用し、高速かつ美しいベクトル地図描画を実現。
+## ✨ Key Features
 
-### 2. ⭐ Trust Score System (信頼性スコア)
-* **概要:** "いいね"の数だけでなく、情報の具体性やユーザーの過去の行動履歴から「情報の信頼度」を算出。
-* **技術:** 独自の重み付けアルゴリズムにより、質の高い情報をフィード上位に表示。
+### 1. 🗺️ Visual Route Sharing
+*   **Overview:** Draws the itinerary on the map with lines and points, saving it in a form that other users can "relive".
+*   **Technology:** Adopts `Mapbox GL JS` to achieve fast and beautiful vector map rendering.
 
-### 3. 📸 Experience Archive (体験アーカイブ)
-* **概要:** 写真と場所、そしてその時の感情をセットで記録。
-* **技術:** `Supabase Storage` による画像管理と、位置情報メタデータの自動抽出。
+### 2. ⭐ Trust Score System
+*   **Overview:** Calculates the "reliability of information" based not only on the number of "likes" but also on the concreteness of information and the user's past behavior history.
+*   **Technology:** Unique weighting algorithm prioritizes high-quality information in the feed.
 
-### 4. 📊 Golang Analytics Service (ログ分析)
-* **概要:** ユーザーの行動ログを高速に処理・分析するための専用マイクロサービス。
-* **技術:** `Go (Gin)` + `Firebase Firestore` on `Cloud Run`。メインのNext.jsアプリから切り離すことで、パフォーマンスへの影響を最小限に抑えています。
+### 3. 📸 Experience Archive
+*   **Overview:** Records photos, locations, and emotions at that time as a set.
+*   **Technology:** Image management via `Supabase Storage` and automatic extraction of location metadata.
+
+### 4. 📊 Golang Analytics Service (Log Analysis)
+*   **Overview:** Dedicated microservice for high-speed processing and analysis of user action logs.
+*   **Technology:** `Go (Gin)` + `Firebase Firestore` on `Cloud Run`. Decoupled from the main Next.js app to minimize performance impact.
 
 ---
 
-## 🛠 技術スタック (Tech Stack)
+## 🛠 Tech Stack
 
 | Category | Technology | Usage |
 | :--- | :--- | :--- |
-| **Frontend** | **Next.js 15** (App Router) | SSR/RSCによる高速なページ描画 |
-| **Language** | **TypeScript** | 型安全性と開発効率の向上 |
-| **Styling** | **Tailwind CSS** | Shadcn UIを用いたモダンなUI設計 |
+| **Frontend** | **Next.js 15** (App Router) | Fast page rendering with SSR/RSC |
+| **Language** | **TypeScript** | Type safety and development efficiency |
+| **Styling** | **Tailwind CSS** | Modern UI design using Shadcn UI |
 | **Backend** | **Supabase** | Auth, Database (PostgreSQL), Storage |
-| **Microservice** | **Go (Gin)** | 高負荷なログ収集・分析サービス |
-| **Database (Log)** | **Firestore** | 分析用NoSQLデータベース |
-| **Maps** | **Mapbox / Google Maps** | 地図描画・場所検索API |
-| **Deployment** | **Vercel / Cloud Run** | フロントエンド / マイクロサービス |
+| **Microservice** | **Go (Gin)** | High-load log collection & analysis service |
+| **Database (Log)** | **Firestore** | NoSQL database for analysis |
+| **Maps** | **Mapbox / Google Maps** | Map rendering & Place Search API |
+| **Deployment** | **Vercel / Cloud Run** | Frontend / Microservice |
 
 ---
 
-## 🏗️ アーキテクチャ (Architecture)
+## 🏗️ Architecture
 
 ```mermaid
 graph TD
@@ -92,13 +94,13 @@ graph TD
 ```
 
 ### 🐹 Go Microservice Strategy
-アクセス解析や行動ログの収集は、書き込み頻度が非常に高く、メインのDB（PostgreSQL）のリソースを圧迫する可能性があります。
-そこで、**Go言語** による軽量・高速な専用サーバーを構築し、ログデータを **Firestore** へ逃がすアーキテクチャを採用（**CQRS**パターンの簡易適用）。
-これにより、ユーザー数が増加してもメインのSNS機能（閲覧・投稿）のパフォーマンスを維持します。
+Access analysis and action log collection have a very high write frequency, which can strain the main DB (PostgreSQL) resources.
+Therefore, we built a lightweight and fast dedicated server using **Go** and adopted an architecture to offload log data to **Firestore** (Simplified **CQRS** pattern).
+This maintains the performance of the main SNS functions (viewing/posting) even as the number of users increases.
 
 ---
 
-## 🚀 セットアップ (Getting Started)
+## 🚀 Getting Started
 
 ### Prerequisites
 * Node.js 18+
@@ -119,7 +121,7 @@ graph TD
 
 3. Set up environment variables:
    Create `.env.local`:
-   ```env
+   ```bash
    NEXT_PUBLIC_SUPABASE_URL=your_url
    NEXT_PUBLIC_SUPABASE_ANON_KEY=your_key
    NEXT_PUBLIC_MAPBOX_TOKEN=your_token
@@ -132,11 +134,11 @@ graph TD
 
 ---
 
-## 👨‍💻 開発者 (Developer)
+## 👨‍💻 Developer
 **Enludus** (Information Science Student)
 
 Focus: Web & Mobile App Development
-Contact: <https://enludus.vercel.app>
+Contact: https://enludus.vercel.app
 
 <p align="center"> 
     © 2025 Enludus. All rights reserved. 
