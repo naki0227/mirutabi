@@ -138,7 +138,7 @@ This maintains the performance of the main SNS functions (viewing/posting) even 
 **Enludus** (Information Science Student)
 
 Focus: Web & Mobile App Development
-Contact: https://enludus.vercel.app
+Contact: https://enludus.com
 
 <p align="center"> 
     © 2025 Enludus. All rights reserved. 
