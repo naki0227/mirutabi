@@ -197,6 +197,7 @@ export default function FeedPage() {
                         <h1 className="text-xl font-bold font-serif italic text-gray-800">Mirutabi Gram</h1>
                     </div>
                     <button
+                        aria-label="投稿する"
                         onClick={() => router.push('/create')}
                         className="bg-blue-600 text-white p-2 rounded-full shadow-lg hover:bg-blue-700 transition"
                     >
@@ -224,8 +225,8 @@ export default function FeedPage() {
                                 </div>
                                 {user && user.uid === post.user_id && (
                                     <div className="flex gap-2">
-                                        <button onClick={() => startEdit(post)} className="text-gray-600 hover:text-blue-600 text-sm"><Edit2 size={16} /></button>
-                                        <button onClick={() => handleDelete(post)} className="text-gray-600 hover:text-red-600 text-sm"><Trash2 size={16} /></button>
+                                        <button aria-label="投稿を編集" onClick={() => startEdit(post)} className="text-gray-600 hover:text-blue-600 text-sm"><Edit2 size={16} /></button>
+                                        <button aria-label="投稿を削除" onClick={() => handleDelete(post)} className="text-gray-600 hover:text-red-600 text-sm"><Trash2 size={16} /></button>
                                     </div>
                                 )}
                             </div>
@@ -251,6 +252,8 @@ export default function FeedPage() {
                             {/* Actions */}
                             <div className="px-3 pt-3 flex gap-4">
                                 <button
+                                    aria-label="いいね"
+                                    aria-pressed={likedPosts.has(post.post_id)}
                                     onClick={() => handleLike(post)}
                                     className={`hover:scale-110 transition flex items-center gap-1 ${likedPosts.has(post.post_id) ? 'text-red-500' : 'text-gray-800'
                                         }`}
@@ -258,18 +261,22 @@ export default function FeedPage() {
                                     <Heart size={24} fill={likedPosts.has(post.post_id) ? "currentColor" : "none"} />
                                 </button>
                                 <button
+                                    aria-label="コメントを開く"
                                     onClick={() => toggleComments(post.post_id)}
                                     className="hover:scale-110 transition text-gray-800"
                                 >
                                     <MessageCircle size={24} />
                                 </button>
                                 <button
+                                    aria-label="保存"
+                                    aria-pressed={firestoreUser?.saved_posts?.includes(post.post_id) ?? false}
                                     onClick={() => handleSave(post)}
                                     className={`hover:scale-110 transition ${firestoreUser?.saved_posts?.includes(post.post_id) ? 'text-blue-600' : 'text-gray-800'}`}
                                 >
                                     <Bookmark size={24} fill={firestoreUser?.saved_posts?.includes(post.post_id) ? "currentColor" : "none"} />
                                 </button>
                                 <button
+                                    aria-label="共有"
                                     onClick={() => handleShare(post)}
                                     className="hover:scale-110 transition text-gray-800"
                                 >
@@ -322,7 +329,7 @@ export default function FeedPage() {
                                     <div className="mt-4 border-t pt-4">
                                         <div className="flex justify-between items-center mb-2">
                                             <h3 className="font-bold text-sm text-gray-700">コメント</h3>
-                                            <button onClick={() => setActiveCommentPostId(null)} className="text-gray-400 hover:text-gray-600">
+                                            <button aria-label="コメントを閉じる" onClick={() => setActiveCommentPostId(null)} className="text-gray-400 hover:text-gray-600">
                                                 <X size={16} />
                                             </button>
                                         </div>

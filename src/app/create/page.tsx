@@ -217,6 +217,7 @@ export default function CreatePostPage() {
                             <div className="mt-2 flex items-center gap-2 text-sm text-blue-600 bg-blue-50 p-2 rounded-lg">
                                 <span>Selected: <b>{location.name}</b></span>
                                 <button
+                                    aria-label="選んだ場所を外す"
                                     onClick={() => setLocation(undefined)}
                                     className="text-gray-600 hover:text-red-500 ml-auto"
                                 >
