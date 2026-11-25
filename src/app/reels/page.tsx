@@ -217,6 +217,7 @@ export default function ReelsPage() {
         <div className="h-screen bg-black overflow-y-scroll snap-y snap-mandatory" ref={containerRef}>
             {/* Back Button */}
             <button
+                aria-label="ホームへ戻る"
                 onClick={() => router.push('/')}
                 className="fixed top-4 left-4 z-50 bg-black/50 text-white p-2 rounded-full backdrop-blur-sm hover:bg-black/70 transition"
             >
@@ -265,8 +266,8 @@ export default function ReelsPage() {
                                 </div>
                                 {user && user.uid === post.user_id && (
                                     <div className="flex flex-col gap-2">
-                                        <button onClick={() => startEdit(post)} className="bg-black/50 p-2 rounded-full text-sm hover:bg-white/20"><Edit2 size={16} /></button>
-                                        <button onClick={() => handleDelete(post)} className="bg-black/50 p-2 rounded-full text-sm hover:bg-red-600/50"><Trash2 size={16} /></button>
+                                        <button aria-label="投稿を編集" onClick={() => startEdit(post)} className="bg-black/50 p-2 rounded-full text-sm hover:bg-white/20"><Edit2 size={16} /></button>
+                                        <button aria-label="投稿を削除" onClick={() => handleDelete(post)} className="bg-black/50 p-2 rounded-full text-sm hover:bg-red-600/50"><Trash2 size={16} /></button>
                                     </div>
                                 )}
                             </div>
@@ -291,6 +292,8 @@ export default function ReelsPage() {
                             <div className="flex justify-between items-end">
                                 <div className="flex flex-col gap-4">
                                     <button
+                                        aria-label={`いいね ${post.likes_count || 0}件`}
+                                        aria-pressed={likedPosts.has(post.post_id)}
                                         onClick={() => handleLike(post)}
                                         className="flex flex-col items-center hover:scale-110 transition"
                                     >
@@ -298,6 +301,7 @@ export default function ReelsPage() {
                                         <span className="text-xs font-bold mt-1">{post.likes_count || 0}</span>
                                     </button>
                                     <button
+                                        aria-label={`コメント ${comments[post.post_id]?.length || 0}件`}
                                         onClick={() => toggleComments(post.post_id)}
                                         className="flex flex-col items-center hover:scale-110 transition"
                                     >
@@ -305,12 +309,15 @@ export default function ReelsPage() {
                                         <span className="text-xs font-bold mt-1">{comments[post.post_id]?.length || 0}</span>
                                     </button>
                                     <button
+                                        aria-label="保存"
+                                        aria-pressed={firestoreUser?.saved_posts?.includes(post.post_id) ?? false}
                                         onClick={() => handleSave(post)}
                                         className={`flex flex-col items-center hover:scale-110 transition ${firestoreUser?.saved_posts?.includes(post.post_id) ? 'text-blue-400' : 'text-white'}`}
                                     >
                                         <Bookmark size={28} fill={firestoreUser?.saved_posts?.includes(post.post_id) ? "currentColor" : "none"} />
                                     </button>
                                     <button
+                                        aria-label="共有"
                                         onClick={() => handleShare(post)}
                                         className="flex flex-col items-center hover:scale-110 transition"
                                     >
@@ -324,7 +331,7 @@ export default function ReelsPage() {
                                 <div className="absolute bottom-0 left-0 right-0 h-[50vh] bg-black/90 rounded-t-2xl p-4 overflow-hidden flex flex-col animate-slide-up z-50">
                                     <div className="flex justify-between items-center mb-4">
                                         <h3 className="font-bold text-white">コメント</h3>
-                                        <button onClick={() => setActiveCommentPostId(null)} className="text-gray-400 hover:text-white">
+                                        <button aria-label="コメントを閉じる" onClick={() => setActiveCommentPostId(null)} className="text-gray-400 hover:text-white">
                                             <X size={24} />
                                         </button>
                                     </div>

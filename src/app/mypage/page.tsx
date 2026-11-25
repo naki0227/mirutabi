@@ -479,7 +479,7 @@ export default function MyPage() {
                                     <span key={tag} className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm flex items-center">
                                         {tag}
                                         {isEditingTags && (
-                                            <button onClick={() => toggleTag(tag)} className="ml-2 text-purple-600 hover:text-purple-900"><X size={14} /></button>
+                                            <button aria-label={`${tag} を外す`} onClick={() => toggleTag(tag)} className="ml-2 text-purple-600 hover:text-purple-900"><X size={14} /></button>
                                         )}
                                     </span>
                                 ))}
